@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP Premium Hybrid PropTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 900: '#14532d' },
+                        dark: '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); }
+        .glass-dark { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); }
+        .page-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .page-section.active { display: block; opacity: 1; }
+        .wa-float { animation: bounce-slight 2s infinite ease-in-out; }
+        @keyframes bounce-slight { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-image { transition: opacity 0.25s ease-in-out; }
+    </style>
+</head>
+<body class="font-sans text-gray-600 antialiased bg-gray-50 selection:bg-brand-500 selection:text-white">
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="fixed w-full z-[100] glass-nav border-b border-gray-100 shadow-sm transition-all duration-300 h-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex justify-between items-center">
+            
+            <div class="flex items-center cursor-pointer group" onclick="navigateToSection('landing', 'hero-landing')">
+                <div class="flex-shrink-0 flex items-center gap-3 transition-transform duration-300 group-hover:scale-105">
+                    <img src="https://lh3.googleusercontent.com/d/1r4OLymlwKHQuuNCIgdUVNAk7BLofBrUf" alt="UP Logo" class="h-9 w-auto object-contain">
+                    <span class="font-bold text-xl text-dark tracking-tight hidden sm:block">UP2 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-700">Residence One</span></span>
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-7">
+                <button onclick="navigateToSection('landing', 'hero-landing')" class="nav-link text-sm text-gray-600 hover:text-brand-600 font-semibold transition-all">Promo</button>
+                <button onclick="navigate('catalog')" class="nav-link text-sm text-gray-600 hover:text-brand-600 font-semibold transition-all">Katalog</button>
+                <button onclick="navigateToSection('landing', 'fasilitas-unggulan')" class="nav-link text-sm text-gray-600 hover:text-brand-600 font-semibold transition-all">Fasilitas</button>
+                <button onclick="navigateToSection('landing', 'testimoni-section')" class="nav-link text-sm text-gray-600 hover:text-brand-600 font-semibold transition-all">Testimoni</button>
+                <button onclick="navigate('tentang')" class="nav-link text-sm text-gray-600 hover:text-brand-600 font-semibold transition-all">Tentang</button>
+                
+                <div id="nav-auth-section" class="flex items-center pl-6 border-l border-gray-200">
+                    <button onclick="navigate('login')" class="px-6 py-2.5 text-sm font-bold rounded-full text-brand-600 bg-brand-50 hover:bg-brand-100 transition-colors border border-brand-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all">Portal Login <i class="fas fa-sign-in-alt ml-1"></i></button>
+                </div>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="lg:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-600 focus:outline-none p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 absolute w-full shadow-2xl">
+            <div class="px-4 pt-4 pb-8 space-y-2" id="mobile-nav-links">
+                <button onclick="navigateToSection('landing', 'hero-landing')" class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl">Promo</button>
+                <button onclick="navigate('catalog')" class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl">Katalog</button>
+                <button onclick="navigateToSection('landing', 'fasilitas-unggulan')" class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl">Fasilitas</button>
+                <button onclick="navigateToSection('landing', 'testimoni-section')" class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl">Testimoni</button>
+                <button onclick="navigate('tentang')" class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl">Tentang</button>
+                <button onclick="navigate('login')" class="block w-full text-left px-4 py-3 text-base font-bold text-brand-600 bg-brand-50 rounded-xl mt-4 border border-brand-100">Portal Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="pt-20 w-full block">
+        
+        <!-- ================= PAGE 1: LANDING PAGE ================= -->
+        <div id="page-landing" class="page-section active w-full">
+            
+            <!-- Hero Promo -->
+            <section id="hero-landing" class="relative py-16 lg:py-24 overflow-hidden bg-white">
+                <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                    <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-100/50 rounded-full blur-[80px]"></div>
+                    <div class="absolute top-1/2 -left-24 w-72 h-72 bg-blue-50/50 rounded-full blur-[60px]"></div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                        <div class="mb-12 lg:mb-0 text-center lg:text-left">
+                            <span class="block text-sm font-bold text-gray-400 tracking-wider uppercase mb-3">Demo Template Website Hybrid Property - UP2WebKit</span>
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-100 text-red-600 font-bold text-xs mb-6 uppercase tracking-widest shadow-sm">
+                                <span class="relative flex h-2 w-2">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                </span>
+                                Hot Promo Bulan Ini
+                            </div>
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark tracking-tight leading-[1.1] mb-6">
+                                Eksklusif <br class="hidden lg:block"><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-700">Cluster Magnolia</span>
+                            </h1>
+                            <p class="text-lg text-gray-500 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                Dapatkan hunian modern idaman dengan promo spektakuler <strong>Tanpa DP (DP 0%)</strong> dan <strong>Gratis Biaya KPR</strong> khusus untuk 10 pembeli pertama minggu ini.
+                            </p>
+                            <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                                <button onclick="navigateToSection('landing', 'section-brosur')" class="px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-bold rounded-full shadow-[0_8px_20px_rgba(34,197,94,0.3)] transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
+                                    <i class="fas fa-download"></i> Download E-Brosur
+                                </button>
+                                <button onclick="navigate('catalog')" class="px-8 py-4 bg-white border-2 border-gray-100 text-dark font-bold rounded-full hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md transform hover:-translate-y-1">
+                                    Lihat Tipe Unit <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="relative max-w-lg mx-auto lg:max-w-none">
+                            <div class="rounded-[2.5rem] overflow-hidden shadow-2xl ring-1 ring-gray-900/5 group relative">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-1000">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
+                            
+                            <!-- Floating Promo Badges -->
+                            <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-3xl shadow-xl border border-gray-100 max-w-[180px] hidden sm:block animate-bounce-slight">
+                                <div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-tags"></i>
+                                </div>
+                                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-0.5">Cicilan Mulai</p>
+                                <p class="text-xl font-extrabold text-dark">3 Jt<span class="text-sm font-medium text-gray-400">/bln</span></p>
+                            </div>
+                            
+                            <!-- New Floating Badge: DP 0% -->
+                            <div class="absolute -top-6 -right-6 bg-white p-4 rounded-3xl shadow-xl border border-gray-100 hidden sm:flex items-center gap-3 animate-bounce-slight" style="animation-delay: 0.5s;">
+                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-percentage text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-lg font-extrabold text-dark leading-tight">DP 0%</p>
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Promo Spesial</p>
+                                </div>
+                            </div>
+
+                            <!-- New Floating Badge: 120+ Unit Terjual -->
+                            <div class="absolute bottom-16 -right-8 bg-white p-4 rounded-3xl shadow-xl border border-gray-100 hidden sm:flex items-center gap-3 animate-bounce-slight" style="animation-delay: 1s;">
+                                <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-home text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-lg font-extrabold text-dark leading-tight">120+</p>
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Unit Terjual</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Section (Keunggulan) -->
+            <section id="fasilitas-unggulan" class="py-20 bg-gray-50 border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-brand-600 font-bold tracking-widest text-sm uppercase mb-3 block">Keunggulan Kawasan</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-dark mb-4 tracking-tight">Kenapa Memilih UP2 Residence One?</h2>
+                        <p class="text-gray-500 text-lg">Keunggulan eksklusif yang menjamin kenyamanan keluarga dan prospek investasi masa depan Anda.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Cards -->
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-[0_8px_30px_rgba(34,197,94,0.12)] transition-all duration-300 transform hover:-translate-y-1.5 group cursor-default">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark mb-2">Legalitas Lengkap</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">SHM & IMB terjamin aman dan sudah dipecah per kavling.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-[0_8px_30px_rgba(34,197,94,0.12)] transition-all duration-300 transform hover:-translate-y-1.5 group cursor-default">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark mb-2">Lokasi Strategis</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Dekat gerbang Tol, Stasiun, dan akses cepat ke fasilitas publik.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-[0_8px_30px_rgba(34,197,94,0.12)] transition-all duration-300 transform hover:-translate-y-1.5 group cursor-default">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark mb-2">Keamanan 24 Jam</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">One Gate System berpadu dengan pengawasan CCTV interaktif kawasan.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-[0_8px_30px_rgba(34,197,94,0.12)] transition-all duration-300 transform hover:-translate-y-1.5 group cursor-default">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark mb-2">Lingkungan Asri</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Taman Hijau tematik dan ruang terbuka luas yang nyaman untuk Keluarga.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-[0_8px_30px_rgba(34,197,94,0.12)] transition-all duration-300 transform hover:-translate-y-1.5 group cursor-default">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark mb-2">Investasi Menjanjikan</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Potensi kenaikan nilai properti yang pesat di kawasan Sunrise Property.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-[0_8px_30px_rgba(34,197,94,0.12)] transition-all duration-300 transform hover:-translate-y-1.5 group cursor-default">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark mb-2">Fasilitas Lengkap</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Dilengkapi fasilitas publik internal seperti Masjid, Playground, & Olahraga.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lokasi Strategis Section -->
+            <section id="lokasi-strategis" class="py-20 bg-white border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                        
+                        <!-- Left: Map Visual -->
+                        <div class="relative mb-12 lg:mb-0 group">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-brand-400 to-blue-500 rounded-[2.5rem] blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+                            <div class="relative rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 bg-gray-100 aspect-video lg:aspect-square">
+                                <!-- Google Maps Interactive -->
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.0343468504!2d106.74495574335936!3d-6.284206599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f21221b0dc5f%3A0xc3e13024ebdb8106!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Right: Location Info -->
+                        <div>
+                            <span class="text-brand-600 font-bold tracking-widest text-sm uppercase mb-3 block">Akses & Mobilitas</span>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-dark mb-6 tracking-tight">Lokasi Strategis & Akses Mudah</h2>
+                            <p class="text-gray-500 text-lg mb-10 leading-relaxed">Terletak di jantung kawasan strategis yang berkembang pesat, memastikan Anda dan keluarga selalu terkoneksi dengan berbagai fasilitas umum utama kota.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-brand-200 hover:bg-brand-50/50 transition-colors group/item">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-500 mr-4 group-hover/item:scale-110 transition-transform duration-300"><i class="fas fa-car text-lg"></i></div>
+                                    <div><h4 class="font-bold text-dark">10 Menit ke Gerbang Tol</h4><p class="text-xs text-gray-500 mt-1">Akses cepat menuju pusat bisnis kota dan bandara.</p></div>
+                                </div>
+                                <div class="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/50 transition-colors group/item">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-500 mr-4 group-hover/item:scale-110 transition-transform duration-300"><i class="fas fa-train text-lg"></i></div>
+                                    <div><h4 class="font-bold text-dark">15 Menit ke Stasiun</h4><p class="text-xs text-gray-500 mt-1">Mobilitas komuter harian yang praktis dan bebas macet.</p></div>
+                                </div>
+                                <div class="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-purple-200 hover:bg-purple-50/50 transition-colors group/item">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-purple-500 mr-4 group-hover/item:scale-110 transition-transform duration-300"><i class="fas fa-shopping-bag text-lg"></i></div>
+                                    <div><h4 class="font-bold text-dark">5 Menit ke Lifestyle Mall</h4><p class="text-xs text-gray-500 mt-1">Pusat perbelanjaan, kuliner, dan hiburan keluarga terdekat.</p></div>
+                                </div>
+                                <div class="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-orange-200 hover:bg-orange-50/50 transition-colors group/item">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-orange-500 mr-4 group-hover/item:scale-110 transition-transform duration-300"><i class="fas fa-graduation-cap text-lg"></i></div>
+                                    <div><h4 class="font-bold text-dark">Dekat Sekolah & RS Terkemuka</h4><p class="text-xs text-gray-500 mt-1">Dikelilingi sarana pendidikan internasional dan rumah sakit unggulan.</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimoni Section -->
+            <section id="testimoni-section" class="py-20 bg-gray-50 border-t border-gray-100 overflow-hidden relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-16">
+                        <span class="text-brand-600 font-bold tracking-widest text-sm uppercase mb-3 block">Testimoni Warga</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight">Kisah Keluarga UP2 Residence One</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm relative hover:shadow-lg transition-shadow duration-300">
+                            <i class="fas fa-quote-right absolute top-8 right-8 text-4xl text-gray-100"></i>
+                            <div class="flex items-center mb-6">
+                                <img src="https://ui-avatars.com/api/?name=Budi+S&background=1e293b&color=fff" class="w-12 h-12 rounded-full mr-4 border-2 border-brand-200">
+                                <div>
+                                    <h4 class="font-bold text-dark">Budi Santoso</h4>
+                                    <div class="text-brand-500 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 italic text-sm leading-relaxed">"Proses KPR dibantu tuntas oleh tim. Lingkungannya enak buat anak-anak main karena sistem keamanannya ketat banget."</p>
+                        </div>
+                        <div class="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm relative hover:shadow-lg transition-shadow duration-300">
+                            <i class="fas fa-quote-right absolute top-8 right-8 text-4xl text-gray-100"></i>
+                            <div class="flex items-center mb-6">
+                                <img src="https://ui-avatars.com/api/?name=Aisyah+M&background=22c55e&color=fff" class="w-12 h-12 rounded-full mr-4 border-2 border-brand-200">
+                                <div>
+                                    <h4 class="font-bold text-dark">Aisyah Maharani</h4>
+                                    <div class="text-brand-500 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 italic text-sm leading-relaxed">"Desain rumahnya modern minimalis, pencahayaan alami di dalam rumah bagus, hemat listrik kalau siang hari."</p>
+                        </div>
+                        <div class="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm relative hover:shadow-lg transition-shadow duration-300">
+                            <i class="fas fa-quote-right absolute top-8 right-8 text-4xl text-gray-100"></i>
+                            <div class="flex items-center mb-6">
+                                <img src="https://ui-avatars.com/api/?name=Reza+R&background=3b82f6&color=fff" class="w-12 h-12 rounded-full mr-4 border-2 border-brand-200">
+                                <div>
+                                    <h4 class="font-bold text-dark">Reza Rahadian</h4>
+                                    <div class="text-brand-500 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 italic text-sm leading-relaxed">"Lokasi juara! Aksesnya dekat stasiun, ngantor ke Jakarta jadi gampang. Harga segini dapat fasilitas mewah itu worth it."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lead Magnet: Download Brosur -->
+            <section id="section-brosur" class="py-24 bg-dark relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-dark to-slate-900 z-0"></div>
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/20 rounded-full blur-[100px] z-0"></div>
+                
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">Dapatkan E-Brosur & Pricelist Lengkap</h2>
+                    <p class="text-gray-400 mb-10 text-lg max-w-2xl mx-auto">Isi form singkat di bawah ini untuk melihat detail harga, peta kawasan, dan mengunduh brosur resolusi tinggi.</p>
+                    
+                    <div id="brosur-form-container" class="bg-white/5 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-2xl border border-white/10 max-w-xl mx-auto">
+                        <form onsubmit="handleBrosurDownload(event)">
+                            <div class="mb-4 text-left">
+                                <label class="block text-xs font-bold text-gray-300 mb-2 uppercase tracking-widest">Nama Lengkap</label>
+                                <input type="text" id="dl-name" required class="w-full px-5 py-4 bg-white/10 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-brand-500 outline-none placeholder-gray-500" placeholder="Ketik nama Anda...">
+                            </div>
+                            <div class="mb-4 text-left">
+                                <label class="block text-xs font-bold text-gray-300 mb-2 uppercase tracking-widest">Alamat Email Aktif</label>
+                                <input type="email" id="dl-email" required class="w-full px-5 py-4 bg-white/10 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-brand-500 outline-none placeholder-gray-500" placeholder="email@anda.com">
+                            </div>
+                            <div class="mb-8 text-left">
+                                <label class="block text-xs font-bold text-gray-300 mb-2 uppercase tracking-widest">Nomor WhatsApp</label>
+                                <input type="tel" id="dl-wa" required class="w-full px-5 py-4 bg-white/10 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-brand-500 outline-none placeholder-gray-500" placeholder="0812...">
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-brand-500 to-brand-600 text-white font-bold py-4 rounded-xl hover:from-brand-600 hover:to-brand-700 transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] transform hover:-translate-y-1">
+                                Tampilkan E-Brosur <i class="fas fa-unlock-alt ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Hidden Reveal Area -->
+                    <div id="brosur-reveal-container" class="hidden mt-8 animate-fade-in">
+                        <div class="glass-dark p-6 md:p-8 rounded-[2.5rem] shadow-2xl max-w-2xl mx-auto border border-white/10">
+                            <div class="bg-brand-500/20 text-brand-300 p-4 rounded-xl mb-6 font-bold text-sm border border-brand-500/30 flex items-center justify-center gap-2">
+                                <i class="fas fa-check-circle text-lg"></i> Akses Diberikan! Berikut preview brosur Anda.
+                            </div>
+                            <div class="relative w-full aspect-[1/1.4] bg-gray-900 rounded-2xl overflow-hidden mb-8 shadow-2xl ring-1 ring-white/10">
+                                <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?auto=format&fit=crop&w=600&q=80" alt="Brosur Preview" class="w-full h-full object-cover opacity-80">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end justify-center pb-10">
+                                    <span class="text-white font-extrabold tracking-widest uppercase opacity-90 text-sm bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10">Preview Mode</span>
+                                </div>
+                            </div>
+                            <a href="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?auto=format&fit=crop&w=1200&q=80" download="Brosur_UP_Residence.png" target="_blank" class="flex w-full justify-center items-center gap-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white font-bold text-lg py-5 rounded-xl shadow-[0_0_25px_rgba(34,197,94,0.4)] hover:shadow-[0_0_40px_rgba(34,197,94,0.7)] transform hover:-translate-y-1 transition-all duration-300">
+                                <i class="fas fa-file-download text-2xl"></i> Unduh File (.PNG)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq-section" class="pt-20 pb-16 bg-white border-t border-gray-100">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <span class="text-brand-600 font-bold tracking-widest text-sm uppercase mb-3 block">Pusat Bantuan</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-dark mb-4 tracking-tight">Frequently Asked Questions</h2>
+                        <p class="text-gray-500 text-lg">Pertanyaan yang paling sering diajukan calon pembeli.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 p-6 hover:border-brand-200 transition-colors">
+                            <h3 class="font-bold text-dark text-lg mb-2 flex items-center"><i class="fas fa-question-circle text-brand-500 mr-3"></i> Apakah proses KPR dibantu?</h3>
+                            <p class="text-gray-500 pl-8 leading-relaxed">Ya, tim marketing internal kami akan membantu seluruh proses pengajuan KPR Anda hingga pemberkasan selesai dan akad di bank.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 p-6 hover:border-brand-200 transition-colors">
+                            <h3 class="font-bold text-dark text-lg mb-2 flex items-center"><i class="fas fa-question-circle text-brand-500 mr-3"></i> Bagaimana skema pembayarannya?</h3>
+                            <p class="text-gray-500 pl-8 leading-relaxed">Kami menyediakan skema Cash Keras, Cash Bertahap (In-house), dan KPR Bank dengan DP mulai dari 0% (khusus promo tertentu bulan ini).</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 p-6 hover:border-brand-200 transition-colors">
+                            <h3 class="font-bold text-dark text-lg mb-2 flex items-center"><i class="fas fa-question-circle text-brand-500 mr-3"></i> Kapan target serah terima kunci?</h3>
+                            <p class="text-gray-500 pl-8 leading-relaxed">Untuk unit indent, serah terima kunci (handover) dilakukan selambat-lambatnya 12 bulan setelah akad kredit. Untuk ready stock, 1 bulan setelah akad.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 p-6 hover:border-brand-200 transition-colors">
+                            <h3 class="font-bold text-dark text-lg mb-2 flex items-center"><i class="fas fa-question-circle text-brand-500 mr-3"></i> Apakah lokasinya terbukti bebas banjir?</h3>
+                            <p class="text-gray-500 pl-8 leading-relaxed">Tentu. Kawasan dibangun di atas dataran tinggi dan dilengkapi sistem drainase pembuangan air modern yang sudah teruji.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CTA Section for Landing Page -->
+            <section class="w-full bg-white pb-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-dark rounded-[2.5rem] p-10 md:p-14 text-center relative overflow-hidden shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-r from-brand-900/50 to-dark z-0"></div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80')] opacity-10 mix-blend-overlay z-0 object-cover"></div>
+                        
+                        <div class="relative z-10 max-w-3xl mx-auto">
+                            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Siap Memiliki Rumah Impian Anda?</h2>
+                            <p class="text-gray-300 text-lg mb-10 leading-relaxed">Dapatkan kemudahan DP 0%, konsultasi langsung dengan tim marketing kami, dan jadwalkan survey unit eksklusif Anda hari ini.</p>
+                            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                                <a href="https://wa.link/i8w855" target="_blank" class="px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-bold rounded-full shadow-[0_8px_20px_rgba(34,197,94,0.3)] transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                                    <i class="fas fa-calendar-check"></i> Booking Survey Sekarang
+                                </a>
+                                <a href="https://wa.link/i8w855" target="_blank" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold rounded-full hover:bg-white/20 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                                    <i class="fab fa-whatsapp text-brand-400"></i> Chat WA Marketing
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+
+        <!-- ================= PAGE 2: KATALOG PROPERTI ================= -->
+        <div id="page-catalog" class="page-section bg-gray-50 py-16 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight">Katalog Properti</h2>
+                        <p class="mt-2 text-gray-500 text-lg">Temukan unit yang sesuai dengan budget dan kebutuhan Anda.</p>
+                    </div>
+                    <!-- Smart Filter -->
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-wrap gap-4 w-full md:w-auto">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Filter Harga</label>
+                            <select id="filter-price" class="bg-gray-50 border border-gray-200 text-dark rounded-xl px-4 py-2.5 outline-none w-full md:w-48 text-sm" onchange="renderProperties()">
+                                <option value="all">Semua Harga</option>
+                                <option value="500000000">< Rp 500 Juta</option>
+                                <option value="800000000">< Rp 800 Juta</option>
+                                <option value="1500000000">< Rp 1.5 Miliar</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Filter Cluster</label>
+                            <select id="filter-cluster" class="bg-gray-50 border border-gray-200 text-dark rounded-xl px-4 py-2.5 outline-none w-full md:w-48 text-sm" onchange="renderProperties()">
+                                <option value="all">Semua Cluster</option>
+                                <option value="Cluster Magnolia">Cluster Magnolia</option>
+                                <option value="Cluster Pinewood">Cluster Pinewood</option>
+                                <option value="Cluster Roseville">Cluster Roseville</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Properties Grid rendered by JS -->
+                <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 3: DETAIL PROPERTI ================= -->
+        <div id="page-detail" class="page-section bg-white py-16 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="navigate('catalog')" class="text-gray-500 font-semibold mb-8 hover:text-brand-600 inline-flex items-center gap-2 bg-gray-50 hover:bg-brand-50 px-4 py-2 rounded-full border border-gray-100 transition-colors">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Katalog
+                </button>
+
+                <div class="lg:grid lg:grid-cols-2 lg:gap-14">
+                    <!-- Left: Interactive Images -->
+                    <div>
+                        <div class="rounded-[2rem] overflow-hidden shadow-xl h-80 md:h-[450px] mb-4 ring-1 ring-black/5 bg-gray-100">
+                            <img id="detail-img" src="" alt="Property" class="w-full h-full object-cover fade-image">
+                        </div>
+                        <!-- Mini Gallery Interactive -->
+                        <div id="detail-gallery" class="grid grid-cols-5 gap-2 md:gap-3">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Right: Info & KPR -->
+                    <div class="mt-10 lg:mt-0">
+                        <div class="inline-block bg-brand-50 border border-brand-100 text-brand-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4" id="detail-cluster">Cluster</div>
+                        <h2 id="detail-title" class="text-3xl md:text-4xl font-extrabold text-dark mb-2 tracking-tight">Tipe Rumah</h2>
+                        <p id="detail-price" class="text-3xl font-bold text-brand-500 mb-8">Rp 0</p>
+
+                        <div class="grid grid-cols-3 gap-4 py-6 border-t border-b border-gray-100 mb-8">
+                            <div class="text-center">
+                                <div class="w-10 h-10 mx-auto bg-gray-50 rounded-full flex items-center justify-center mb-2"><i class="fas fa-bed text-gray-400"></i></div>
+                                <p id="detail-bed" class="text-sm font-semibold text-dark">0 KT</p>
+                            </div>
+                            <div class="text-center border-l border-gray-100">
+                                <div class="w-10 h-10 mx-auto bg-gray-50 rounded-full flex items-center justify-center mb-2"><i class="fas fa-bath text-gray-400"></i></div>
+                                <p id="detail-bath" class="text-sm font-semibold text-dark">0 KM</p>
+                            </div>
+                            <div class="text-center border-l border-gray-100">
+                                <div class="w-10 h-10 mx-auto bg-gray-50 rounded-full flex items-center justify-center mb-2"><i class="fas fa-vector-square text-gray-400"></i></div>
+                                <p id="detail-area" class="text-sm font-semibold text-dark">LB/LT</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-10">
+                            <h3 class="font-bold text-lg text-dark mb-2">Deskripsi Unit</h3>
+                            <p id="detail-desc" class="text-gray-500 leading-relaxed text-sm">Desc</p>
+                        </div>
+
+                        <!-- KPR Calculator Section -->
+                        <div class="bg-gray-50/80 p-6 rounded-3xl border border-gray-100 mb-8 shadow-sm">
+                            <h3 class="font-bold text-dark mb-4 flex items-center"><i class="fas fa-calculator text-brand-500 mr-2"></i> Simulasi KPR</h3>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase">DP (Uang Muka) %</label>
+                                    <input type="number" id="kpr-dp" value="10" class="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 outline-none text-sm" oninput="calculateKPR()">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase">Tenor (Tahun)</label>
+                                    <select id="kpr-tenor" class="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 outline-none text-sm" onchange="calculateKPR()">
+                                        <option value="10">10 Tahun</option><option value="15" selected>15 Tahun</option><option value="20">20 Tahun</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center bg-white p-4 rounded-xl border border-gray-100">
+                                <span class="text-gray-500 font-medium text-sm">Estimasi Cicilan:</span>
+                                <span id="kpr-result" class="text-xl font-bold text-brand-600">Rp 0 / bln</span>
+                            </div>
+                        </div>
+
+                        <!-- Fixed Action Buttons -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <a href="https://wa.link/i8w855" target="_blank" class="w-full flex justify-center items-center px-4 py-3.5 rounded-xl shadow-md text-sm font-bold text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 transition-all transform hover:-translate-y-0.5">
+                                Tanya Harga Promo <i class="fab fa-whatsapp ml-2 text-lg"></i>
+                            </a>
+                            <a href="https://wa.link/i8w855" target="_blank" class="w-full flex justify-center items-center px-4 py-3.5 border border-gray-200 rounded-xl shadow-sm text-sm font-bold text-dark bg-white hover:border-brand-500 hover:text-brand-600 transition-all transform hover:-translate-y-0.5">
+                                Booking Survei Unit <i class="fas fa-calendar-check ml-2 text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 4: TENTANG ================= -->
+        <div id="page-tentang" class="page-section bg-white py-16 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-brand-600 font-bold tracking-widest text-sm uppercase mb-3 block">Profil Pengembang</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-dark mb-4 tracking-tight">Tentang UP2 Residence One</h2>
+                    <p class="text-gray-500 text-lg max-w-3xl mx-auto">Dedikasi kami membangun komunitas dan hunian modern berkualitas untuk masa depan.</p>
+                </div>
+                
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                    <div class="relative group mb-10 lg:mb-0">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-400 to-brand-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="About" class="relative rounded-3xl shadow-xl w-full ring-1 ring-black/5">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-dark mb-6">Visi Kami</h3>
+                        <p class="text-gray-600 mb-10 leading-relaxed text-lg">Menjadi pelopor hunian berkonsep <strong>smart & green living</strong> yang terjangkau namun memiliki nilai investasi tinggi di wilayah yang sedang berkembang pesat. Kami membangun lingkungan tempat keluarga Anda dapat tumbuh dengan baik.</p>
+                        
+                        <h3 class="text-2xl font-bold text-dark mb-6">Kenapa Memilih Kami?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mr-4"><i class="fas fa-check"></i></div>
+                                <div><h4 class="font-bold text-dark">Legalitas Aman</h4><p class="text-gray-500 text-sm mt-1">SHM dan IMB sudah pecah per kavling.</p></div>
+                            </li>
+                            <li class="flex items-start bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mr-4"><i class="fas fa-hammer"></i></div>
+                                <div><h4 class="font-bold text-dark">Material Premium</h4><p class="text-gray-500 text-sm mt-1">Standar bangunan tinggi oleh kontraktor ahli.</p></div>
+                            </li>
+                            <li class="flex items-start bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mr-4"><i class="fas fa-tree"></i></div>
+                                <div><h4 class="font-bold text-dark">Green Living</h4><p class="text-gray-500 text-sm mt-1">Desain pencahayaan maksimal & taman luas.</p></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 5: PORTAL LOGIN ================= -->
+        <div id="page-login" class="page-section bg-gray-50 py-24 w-full">
+            <div class="max-w-5xl mx-auto px-4 w-full">
+                <div class="bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden lg:flex">
+                    <!-- Info Panel -->
+                    <div class="bg-dark text-white p-10 lg:w-1/2 relative overflow-hidden flex flex-col justify-center">
+                        <div class="absolute -top-24 -left-24 w-64 h-64 bg-brand-500/20 rounded-full blur-[80px]"></div>
+                        <h2 class="text-3xl font-extrabold mb-4 relative z-10">Sistem Portal Hybrid</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 relative z-10">Sistem ini memfasilitasi integrasi antara operasional pemasaran (CRM Leads) dan pelayanan konsumen (KPR Tracking) dalam satu platform.</p>
+                        <div class="space-y-4 relative z-10">
+                            <div class="flex items-center gap-3"><i class="fas fa-user-shield text-brand-400"></i> <span class="text-sm font-medium">Dashboard Marketing & Admin</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-search-dollar text-brand-400"></i> <span class="text-sm font-medium">Tracking Status KPR Pembeli</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-database text-brand-400"></i> <span class="text-sm font-medium">Manajemen Properti (Simulasi)</span></div>
+                        </div>
+                    </div>
+                    <!-- Form Panel -->
+                    <div class="p-10 lg:w-1/2 flex flex-col justify-center">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-extrabold text-dark">Login Demo</h2>
+                            <p class="text-sm text-gray-500 mt-2">Pilih role untuk mencoba sistem dashboard.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <button onclick="handleQuickLogin('admin')" class="w-full flex items-center justify-center gap-3 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold py-4 rounded-xl border border-brand-200 transition-colors">
+                                <i class="fas fa-laptop-code text-xl"></i> Masuk Sebagai Admin Demo
+                            </button>
+                            <button onclick="handleQuickLogin('pembeli')" class="w-full flex items-center justify-center gap-3 bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold py-4 rounded-xl border border-blue-200 transition-colors">
+                                <i class="fas fa-user-tie text-xl"></i> Masuk Sebagai Pembeli Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 6: DASHBOARD ADMIN ================= -->
+        <div id="page-dashboard-admin" class="page-section bg-gray-50 py-16 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Admin Hero -->
+                <div class="bg-gradient-to-r from-dark to-slate-800 rounded-[2rem] p-8 md:p-10 mb-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div class="absolute right-0 top-0 w-64 h-64 bg-brand-500/10 rounded-full blur-[60px]"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Selamat Datang, Admin Marketing</h2>
+                        <p class="text-gray-400 text-sm">Pantau leads, performa promosi, dan jadwal survey secara realtime.</p>
+                    </div>
+                    <button onclick="logout()" class="relative z-10 px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-sm border border-white/10 transition-colors flex items-center gap-2">
+                        <i class="fas fa-sign-out-alt"></i> Keluar
+                    </button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Total Leads</p>
+                        <h3 class="text-3xl font-extrabold text-dark">128</h3>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Leads Hari Ini</p>
+                        <h3 class="text-3xl font-extrabold text-brand-500">+12</h3>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Unit Terjual</p>
+                        <h3 class="text-3xl font-extrabold text-blue-600">45</h3>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Conversion</p>
+                        <h3 class="text-3xl font-extrabold text-purple-600">35%</h3>
+                    </div>
+                </div>
+
+                <!-- Visual Analytics Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Main Chart: Leads Trend -->
+                    <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="font-bold text-dark text-lg">Trend Leads Mingguan</h3>
+                                <p class="text-xs text-gray-500 mt-1">Akumulasi 7 Hari terakhir</p>
+                            </div>
+                        </div>
+                        <div class="w-full h-48 relative flex items-end flex-grow">
+                            <!-- Grid lines -->
+                            <div class="absolute inset-0 flex flex-col justify-between border-b border-gray-100 pb-6">
+                                <div class="border-b border-gray-50 w-full h-0"></div>
+                                <div class="border-b border-gray-50 w-full h-0"></div>
+                                <div class="border-b border-gray-50 w-full h-0"></div>
+                                <div class="border-b border-gray-50 w-full h-0"></div>
+                            </div>
+                            <!-- Fake Area Chart SVG -->
+                            <svg viewBox="0 0 100 40" preserveAspectRatio="none" class="w-full h-32 relative z-10 overflow-visible">
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#22c55e" stop-opacity="0.3" />
+                                        <stop offset="100%" stop-color="#22c55e" stop-opacity="0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,40 L0,25 C10,20 20,30 30,22 C40,14 50,28 60,15 C70,2 80,10 90,5 L100,8 L100,40 Z" fill="url(#chartGradient)" />
+                                <path d="M0,25 C10,20 20,30 30,22 C40,14 50,28 60,15 C70,2 80,10 90,5 L100,8" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <circle cx="90" cy="5" r="1.5" fill="white" stroke="#22c55e" stroke-width="0.8" />
+                                <circle cx="60" cy="15" r="1.5" fill="white" stroke="#22c55e" stroke-width="0.8" />
+                                <circle cx="30" cy="22" r="1.5" fill="white" stroke="#22c55e" stroke-width="0.8" />
+                            </svg>
+                            <!-- X Axis Labels -->
+                            <div class="absolute bottom-0 left-0 w-full flex justify-between text-[9px] font-bold text-gray-400 px-2 uppercase tracking-wider">
+                                <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Chart: Traffic Source -->
+                    <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col">
+                        <h3 class="font-bold text-dark text-lg">Sumber Leads</h3>
+                        <p class="text-xs text-gray-500 mt-1 mb-6">Berdasarkan konversi platform</p>
+                        <div class="flex-grow flex flex-col justify-center gap-5">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5"><span class="text-dark">Instagram Ads</span><span class="text-brand-600">45%</span></div>
+                                <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-brand-500 h-2 rounded-full" style="width: 45%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5"><span class="text-dark">Google Search</span><span class="text-blue-500">30%</span></div>
+                                <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 30%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5"><span class="text-dark">Brosur Web</span><span class="text-purple-500">15%</span></div>
+                                <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-purple-500 h-2 rounded-full" style="width: 15%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5"><span class="text-dark">Referral</span><span class="text-orange-500">10%</span></div>
+                                <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-orange-500 h-2 rounded-full" style="width: 10%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leads Table -->
+                <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                        <h3 class="font-bold text-dark text-lg"><i class="fas fa-list-alt text-brand-500 mr-2"></i> Database Leads Masuk</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500 border-b border-gray-100">
+                                    <th class="p-4 font-bold">Tgl. Masuk</th>
+                                    <th class="p-4 font-bold">Nama Klien</th>
+                                    <th class="p-4 font-bold">Kontak</th>
+                                    <th class="p-4 font-bold">Sumber Form</th>
+                                    <th class="p-4 font-bold">Follow Up</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-leads-table" class="text-sm">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 7: DASHBOARD USER ================= -->
+        <div id="page-dashboard-user" class="page-section bg-gray-50 py-16 w-full">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- User Hero -->
+                <div class="bg-gradient-to-r from-brand-600 to-brand-800 rounded-[2rem] p-8 md:p-10 mb-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div class="absolute right-0 top-0 w-64 h-64 bg-white/10 rounded-full blur-[60px]"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Portal Pembeli</h2>
+                        <p class="text-brand-100 text-sm">Selamat datang, <span id="user-display-name" class="font-bold text-white">Budi</span>. Pantau status unit Anda di sini.</p>
+                    </div>
+                    <button onclick="logout()" class="relative z-10 px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-sm border border-white/10 transition-colors flex items-center gap-2">
+                        <i class="fas fa-sign-out-alt"></i> Keluar
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Progress Card -->
+                    <div class="md:col-span-2 bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-dark text-lg mb-6"><i class="fas fa-chart-line text-brand-500 mr-2"></i> Progress Pengajuan KPR</h3>
+                        
+                        <!-- Stepper -->
+                        <div class="relative flex justify-between items-center w-full px-4 mb-10 mt-6">
+                            <div class="absolute top-5 left-0 w-full h-1 bg-gray-100 -z-10 rounded-full"></div>
+                            <div class="absolute top-5 left-0 w-1/2 h-1 bg-brand-500 -z-10 rounded-full"></div>
+                            <!-- Steps -->
+                            <div class="flex flex-col items-center step-active">
+                                <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold mb-2 shadow-md"><i class="fas fa-file-alt"></i></div>
+                                <span class="text-xs font-bold text-dark">Berkas</span>
+                            </div>
+                            <div class="flex flex-col items-center step-active">
+                                <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold mb-2 shadow-md"><i class="fas fa-search-dollar"></i></div>
+                                <span class="text-xs font-bold text-dark">Checking</span>
+                            </div>
+                            <div class="flex flex-col items-center step-inactive">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center font-bold mb-2"><i class="fas fa-file-signature"></i></div>
+                                <span class="text-xs font-bold text-gray-400">SP3K</span>
+                            </div>
+                            <div class="flex flex-col items-center step-inactive">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center font-bold mb-2"><i class="fas fa-key"></i></div>
+                                <span class="text-xs font-bold text-gray-400">Akad</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                            <h4 class="text-sm font-bold text-blue-800 mb-1"><i class="fas fa-info-circle mr-1"></i> Update Analis Bank:</h4>
+                            <p class="text-sm text-blue-600 leading-relaxed">BI Checking lolos. Berkas sedang dalam tahap penilaian akhir analis. Mohon siapkan rekening koran 3 bulan terakhir jika sewaktu-waktu diminta.</p>
+                        </div>
+                        
+                        <!-- Progress Pembangunan Section -->
+                        <div class="mt-8 pt-8 border-t border-gray-100">
+                            <h3 class="font-bold text-dark text-lg mb-6"><i class="fas fa-hammer text-brand-500 mr-2"></i> Progress Pembangunan Unit</h3>
+                            <div class="mb-4 flex justify-between items-center">
+                                <span class="text-sm font-bold text-gray-600">Pekerjaan Fisik</span>
+                                <span class="text-sm font-extrabold text-brand-600">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-3 mb-8 overflow-hidden">
+                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-full rounded-full relative" style="width: 45%">
+                                    <div class="absolute top-0 right-0 bottom-0 left-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')] opacity-50"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-4 gap-2 text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-8 h-8 bg-brand-500 text-white rounded-full flex items-center justify-center text-xs mb-2 shadow-sm"><i class="fas fa-check"></i></div>
+                                    <p class="text-[10px] sm:text-xs font-bold text-dark">Pondasi</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-8 h-8 bg-brand-500 text-white rounded-full flex items-center justify-center text-xs mb-2 shadow-sm"><i class="fas fa-check"></i></div>
+                                    <p class="text-[10px] sm:text-xs font-bold text-dark">Struktur</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-8 h-8 bg-brand-100 text-brand-500 rounded-full flex items-center justify-center text-xs mb-2 border border-brand-200"><i class="fas fa-spinner animate-spin"></i></div>
+                                    <p class="text-[10px] sm:text-xs font-bold text-brand-600">Dinding & Atap</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-8 h-8 bg-gray-100 text-gray-400 rounded-full flex items-center justify-center text-xs mb-2"><i class="fas fa-clock"></i></div>
+                                    <p class="text-[10px] sm:text-xs font-bold text-gray-400">Finishing</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Side Info -->
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 text-center">
+                            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=300&q=80" class="w-full h-32 object-cover rounded-xl mb-4">
+                            <h4 class="font-bold text-dark">Tipe 45/72 Magnolia</h4>
+                            <p class="text-xs text-gray-500">Blok A No. 12</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-dark text-sm mb-3">PIC Marketing</h4>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center text-brand-600 font-bold">R</div>
+                                <div>
+                                    <p class="text-sm font-bold text-dark">Reza (In-house)</p>
+                                    <a href="https://wa.link/i8w855" class="text-xs text-brand-600 font-bold hover:underline">Chat WA &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-dark text-white pt-16 pb-10 relative border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10">
+                <div class="md:col-span-6 flex flex-col items-start">
+                    <div class="flex items-center gap-3 mb-5">
+                        <img src="https://lh3.googleusercontent.com/d/1r4OLymlwKHQuuNCIgdUVNAk7BLofBrUf" alt="UP Logo" class="h-9 w-auto object-contain brightness-0 invert opacity-90">
+                        <div>
+                            <div class="font-bold text-lg tracking-tight">UP2 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-600">Residence One</span></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">Modern hybrid website system untuk property developer, marketing, dan customer portal masa depan.</p>
+                </div>
+                <div class="md:col-span-6 flex flex-col md:items-end justify-center">
+                    <h4 class="text-white font-semibold mb-4 text-xs uppercase tracking-widest opacity-80">Media Sosial</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-all"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-all"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-gray-800/50 text-center md:text-left">
+                <div class="text-xs text-gray-500 font-medium tracking-wide mb-1.5">&copy; <span id="current-year">2026</span> UP2 WebKit by UP2 Digi-App. All rights reserved.</div>
+                <a href="https://wa.link/i8w855" target="_blank" class="inline-block text-[9px] tracking-widest text-brand-400/80 uppercase font-bold hover:text-brand-400 transition-colors">Part of UP2 Digital Ecosystem</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WA -->
+    <a href="https://wa.link/i8w855" target="_blank" class="fixed bottom-8 right-6 z-[60] bg-brand-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:scale-110 transition-transform wa-float">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 1. DATA MOCKUP (Updated with multi-images for gallery)
+        const db_properties = [
+            { id: 1, title: "Tipe 36/60", cluster: "Cluster Magnolia", price: 450000000, bed: 2, bath: 1, area: "36/60", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", desc: "Minimalis compact cocok untuk keluarga muda dengan sisa lahan untuk ekspansi.",
+              images: ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=800&q=80"] },
+            { id: 2, title: "Tipe 45/72", cluster: "Cluster Magnolia", price: 650000000, bed: 3, bath: 1, area: "45/72", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", desc: "Hunian ideal dengan ruang ekstra dan pencahayaan maksimal di setiap sudut.",
+              images: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=800&q=80"] },
+            { id: 3, title: "Tipe 60/90 (2 Lt)", cluster: "Cluster Pinewood", price: 950000000, bed: 3, bath: 2, area: "60/90", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", desc: "Kemewahan 2 lantai fasad elegan dengan master bedroom ekstra luas.",
+              images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=800&q=80"] },
+            { id: 4, title: "Tipe 80/120 Premium", cluster: "Cluster Roseville", price: 1350000000, bed: 4, bath: 3, area: "80/120", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80", desc: "Tipe eksklusif dengan fitur smart home terintegrasi dan carport 2 mobil.",
+              images: ["https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=800&q=80"] }
+        ];
+
+        let db_leads = [
+            { date: "13 Mei 2026", name: "Siti Aminah", email: "siti@gmail.com", wa: "0812345678", source: "Brosur Download" }
+        ];
+
+        let currentUser = null;
+
+        // 2. ROUTING LOGIC (SPA)
+        function navigate(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => {
+                el.style.display = 'none';
+                el.classList.remove('active');
+            });
+            
+            // Show target
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.style.display = 'block';
+                setTimeout(() => target.classList.add('active'), 20);
+            }
+
+            // Jump to top instantly (fix blank hero issue)
+            window.scrollTo(0, 0);
+
+            if(pageId === 'catalog') renderProperties();
+            if(pageId === 'dashboard-admin') renderAdminTable();
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+        }
+
+        // 3. SECTION NAVIGATION (for landing page anchor links)
+        function navigateToSection(pageId, sectionId) {
+            navigate(pageId);
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if(section) {
+                    const y = section.getBoundingClientRect().top + window.scrollY - 80; // 80px is navbar height offset
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                }
+            }, 100);
+        }
+
+        // 4. UTILS & RENDERERS
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(angka);
+        }
+
+        function renderProperties() {
+            const grid = document.getElementById('properties-grid');
+            if(!grid) return;
+            
+            const maxPrice = document.getElementById('filter-price').value;
+            const cluster = document.getElementById('filter-cluster').value;
+            
+            grid.innerHTML = ''; 
+
+            db_properties.forEach(prop => {
+                let passPrice = maxPrice === 'all' || prop.price <= parseInt(maxPrice);
+                let passCluster = cluster === 'all' || prop.cluster === cluster;
+
+                if(passPrice && passCluster) {
+                    grid.innerHTML += `
+                    <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-gray-100 flex flex-col group">
+                        <div class="relative h-56 overflow-hidden cursor-pointer" onclick="openDetail(${prop.id})">
+                            <img src="${prop.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-[10px] font-bold text-dark shadow-sm uppercase tracking-wider">${prop.cluster}</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-extrabold text-dark mb-1 cursor-pointer hover:text-brand-600" onclick="openDetail(${prop.id})">${prop.title}</h3>
+                            <p class="text-xl font-bold text-brand-500 mb-4">${formatRupiah(prop.price)}</p>
+                            
+                            <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-gray-50 mb-6 mt-auto">
+                                <div class="text-center"><p class="text-xs font-bold text-dark"><i class="fas fa-bed text-gray-300 mr-1"></i> ${prop.bed} KT</p></div>
+                                <div class="text-center border-l border-gray-50"><p class="text-xs font-bold text-dark"><i class="fas fa-bath text-gray-300 mr-1"></i> ${prop.bath} KM</p></div>
+                                <div class="text-center border-l border-gray-50"><p class="text-xs font-bold text-dark"><i class="fas fa-vector-square text-gray-300 mr-1"></i> LB ${prop.area}</p></div>
+                            </div>
+                            <div class="flex gap-3">
+                                <button onclick="openDetail(${prop.id})" class="flex-1 py-3.5 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl text-sm font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">Lihat Detail Unit <i class="fas fa-arrow-right text-xs"></i></button>
+                                <a href="https://wa.link/i8w855" target="_blank" class="w-[52px] flex items-center justify-center bg-dark text-white rounded-xl hover:bg-brand-600 transition-colors shadow-md"><i class="fab fa-whatsapp text-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+            });
+
+            if(grid.innerHTML === '') {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400 text-sm">Tidak ada properti yang cocok.</div>`;
+            }
+        }
+
+        // Interactive Mini Gallery Function
+        function renderGallery(images) {
+            const galleryContainer = document.getElementById('detail-gallery');
+            let html = '';
+            images.forEach((img, idx) => {
+                const activeClass = idx === 0 ? 'ring-2 ring-brand-500 opacity-100' : 'opacity-60 hover:opacity-100';
+                html += `<img src="${img}" onclick="changeMainImage('${img}', this)" class="detail-thumbnail rounded-xl h-20 w-full object-cover shadow-sm border border-gray-100 cursor-pointer transition-all duration-300 ${activeClass}">`;
+            });
+            galleryContainer.innerHTML = html;
+        }
+
+        function changeMainImage(url, el) {
+            const mainImg = document.getElementById('detail-img');
+            mainImg.style.opacity = 0;
+            setTimeout(() => {
+                mainImg.src = url;
+                mainImg.style.opacity = 1;
+            }, 200);
+
+            document.querySelectorAll('.detail-thumbnail').forEach(thumb => {
+                thumb.classList.remove('ring-2', 'ring-brand-500', 'opacity-100');
+                thumb.classList.add('opacity-60');
+            });
+            el.classList.remove('opacity-60');
+            el.classList.add('ring-2', 'ring-brand-500', 'opacity-100');
+        }
+
+        // 5. PROPERTY DETAIL
+        let activeProperty = null;
+        function openDetail(id) {
+            const prop = db_properties.find(p => p.id === id);
+            if(prop) {
+                activeProperty = prop;
+                document.getElementById('detail-img').src = prop.img;
+                renderGallery(prop.images); // Build dynamic mini gallery
+                document.getElementById('detail-cluster').innerText = prop.cluster;
+                document.getElementById('detail-title').innerText = prop.title;
+                document.getElementById('detail-price').innerText = formatRupiah(prop.price);
+                document.getElementById('detail-bed').innerText = prop.bed + " KT";
+                document.getElementById('detail-bath').innerText = prop.bath + " KM";
+                document.getElementById('detail-area').innerText = "LB/LT " + prop.area;
+                document.getElementById('detail-desc').innerText = prop.desc;
+                calculateKPR();
+                navigate('detail');
+            }
+        }
+
+        function calculateKPR() {
+            const dpEl = document.getElementById('kpr-dp');
+            if(!dpEl || !activeProperty) return; 
+            
+            const dpPercentage = parseFloat(dpEl.value) / 100;
+            const tenorYears = parseInt(document.getElementById('kpr-tenor').value);
+            const dpAmount = activeProperty.price * dpPercentage;
+            const hutang = activeProperty.price - dpAmount;
+            const bunga = hutang * 0.05 * tenorYears; 
+            const cicilan = (hutang + bunga) / (tenorYears * 12);
+            document.getElementById('kpr-result').innerText = formatRupiah(cicilan) + " / bln";
+        }
+
+        // 6. FORM BROSUR (Lead Magnet)
+        function handleBrosurDownload(e) {
+            e.preventDefault();
+            const name = document.getElementById('dl-name').value;
+            const email = document.getElementById('dl-email').value;
+            const wa = document.getElementById('dl-wa').value;
+            
+            const today = new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'});
+            db_leads.unshift({ date: today, name: name, email: email, wa: wa, source: "Brosur Download" });
+            
+            document.getElementById('brosur-form-container').classList.add('hidden');
+            document.getElementById('brosur-reveal-container').classList.remove('hidden');
+        }
+
+        // 7. LOGIN LOGIC
+        function handleQuickLogin(role) {
+            if(role === 'admin') {
+                currentUser = { role: 'admin' };
+                navigate('dashboard-admin');
+            } else {
+                currentUser = { role: 'user', name: 'Budi Santoso' };
+                document.getElementById('user-display-name').innerText = currentUser.name;
+                navigate('dashboard-user');
+            }
+            updateNavAuth();
+        }
+
+        function logout() {
+            currentUser = null;
+            updateNavAuth();
+            navigate('login');
+        }
+
+        function updateNavAuth() {
+            const deskNav = document.getElementById('nav-auth-section');
+            if(currentUser) {
+                const route = currentUser.role === 'admin' ? 'dashboard-admin' : 'dashboard-user';
+                deskNav.innerHTML = `<button onclick="navigate('${route}')" class="px-6 py-2.5 text-sm font-bold rounded-full text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">Dashboard System</button>`;
+            } else {
+                deskNav.innerHTML = `<button onclick="navigate('login')" class="px-6 py-2.5 text-sm font-bold rounded-full text-brand-600 bg-brand-50 hover:bg-brand-100 transition-colors border border-brand-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all">Portal Login <i class="fas fa-sign-in-alt ml-1"></i></button>`;
+            }
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-leads-table');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            db_leads.forEach(l => {
+                let waClean = l.wa.replace(/^0/, '62').replace(/\D/g, '');
+                tbody.innerHTML += `
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                    <td class="p-4 text-gray-500">${l.date}</td>
+                    <td class="p-4 font-bold text-dark">${l.name}</td>
+                    <td class="p-4 text-gray-600 text-xs">${l.wa}<br><span class="text-gray-400">${l.email}</span></td>
+                    <td class="p-4"><span class="bg-brand-50 text-brand-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">${l.source}</span></td>
+                    <td class="p-4">
+                        <a href="https://wa.me/${waClean}?text=Halo%20Bapak/Ibu%20${encodeURIComponent(l.name)},%20terima%20kasih%20telah%20menghubungi%20kami." target="_blank" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-sm">
+                            <i class="fab fa-whatsapp"></i> Chat WA
+                        </a>
+                    </td>
+                </tr>`;
+            });
+        }
+    </script>
+</body>
+</html>
